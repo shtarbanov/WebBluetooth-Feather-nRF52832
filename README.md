@@ -6,10 +6,12 @@ the embedded code tor for setting up a basic bluetooth device and the JavaScript
 that device from the web browser.
 
 In order to understand how to work with Web Bluetooth, you first must know about the following concepts:
-  Arrow Function in JavaScript
-  Promises in JavaScript
-  Async / Await in JavaScript
-  Bluetooth Services and Characteristics
+  <ul>
+  <li>Arrow Function in JavaScript</li>
+  <li>>Promises in JavaScript</li>
+  <li>Async / Await in JavaScript</li>
+  <li>Bluetooth Services and Characteristics</li>
+  </ul>
 
 Here are some additional helpful resources:
 Web Bluetooth Examples: https://googlechrome.github.io/samples/web-bluetooth/index.html

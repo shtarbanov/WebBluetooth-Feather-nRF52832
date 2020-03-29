@@ -10,7 +10,7 @@ In order to understand how to work with Web Bluetooth, you first must know about
   <li>Document Object Model</li>
   <li>Event Listeners in JavaScript</li>
   <li>Arrow Function in JavaScript</li>
-  <li>>Promises in JavaScript</li>
+  <li>Promises in JavaScript</li>
   <li>Async / Await in JavaScript</li>
   <li>Bluetooth Services and Characteristics</li>
 </ul>

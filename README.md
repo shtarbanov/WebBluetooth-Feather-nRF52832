@@ -1,6 +1,16 @@
 # WebBLE-Feather-nRF52832
 Web Bluetooth examples with Adafruit Feather nRF52832
 
-This repository contain full examples to help you get started with Web Bluetooth. You will find both 
+This repository contains full examples to help you get started with Web Bluetooth. You will find both 
 the embedded code tor for setting up a basic bluetooth device and the JavaScript code for connecting to and controlling
-that device from the web browser. 
+that device from the web browser.
+
+In order to understand how to work with Web Bluetooth, you first must know about the following concepts:
+  Arrow Function in JavaScript
+  Promises in JavaScript
+  Async / Await in JavaScript
+  Bluetooth Services and Characteristics
+
+Here are some additional helpful resources:
+Web Bluetooth Examples: https://googlechrome.github.io/samples/web-bluetooth/index.html
+Talk about web Bluetooth: https://www.youtube.com/watch?v=XDc5HUVMI5U

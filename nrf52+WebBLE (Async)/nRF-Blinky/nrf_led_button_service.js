@@ -1,18 +1,18 @@
-//TODO: Have the device report the battery value, then read and display the value here.
-  //can you make the value be updated only if the battery level changes.
-  //On the embedded device, implement the battery service manually. Read more about 
-  //BLE to understand how to handle notify option, and more about permissions.
-
-
-//TODO: Design a diagram showing the switchihng happening internally in the FlowIO. The diagram
-  //should also show the power consumption, which would increase when more valves are opened. You
-  //want to be able to just click on different parts of the diagram itself to change the behavior.
-  //First you can try doing it in powerpoint, then in p5.js.
-//Disconnect does not work on my Linux machine.
+/* 
+  This example shows how to control the state of each of the two LEDs on the nrf52832 Feather
+  board. The microcontorller has been set up so that is has one custom service with a single
+  characteristic that holds a 2-byte balue. The two bytes in the characteristic correspond to
+  the state of the two LEDs on the board. The characteristic has a read and write persmisions.
+    In this JavaScript code, we are connecting to the device and reading the current value of
+  the characteristic. Then we are toggling one of the two bytes depending on which button the
+  user presses on the screen, which in turn causes the corresponding LED to toggle as well. 
+*/
 'use strict'
 
 const serviceUUID = 'a3941db0-a97c-4cf1-943f-a25ff9ba40cd';
 const ledCharacteristicUUID = '5b8c0ab6-a058-4684-b2b6-4a0a692e2d45';
+
+
 
 let bleDevice;
 let bleServer;

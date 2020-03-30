@@ -6,16 +6,14 @@ the embedded code tor for setting up a basic bluetooth device and the JavaScript
 that device from the web browser.
 
 In order to understand how to work with Web Bluetooth, you first must know about the following concepts, and in the order shown:
-<ul>
-  <li>Document Object Model</li>
-  <li>Event Listeners in JavaScript</li>
-  <li>Arrow Function in JavaScript</li>
-  <li>Promises in JavaScript</li>
-  <li>Async / Await in JavaScript</li>
-  <li>Bluetooth Services and Characteristics</li>
-  <li>Data Buffers in JavaScrip: TypeArray, ArrayBuffer, DataView, etc.</li>
-</ul>
-This is a [link](http://google.com).
+
+* Document Object Model
+* Event Listeners in JavaScript
+* Arrow Function in JavaScript
+* Promises in JavaScript
+* Async / Await in JavaScript
+* Bluetooth Services and Characteristics
+* [Data Buffers in JavaScrip](https://data-flair.training/blogs/javascript-dataview/): TypeArray, ArrayBuffer, DataView, etc.
 
 Here are some additional helpful resources about web-bluetooth specifically:
 <ul>

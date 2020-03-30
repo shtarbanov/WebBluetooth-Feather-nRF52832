@@ -16,7 +16,5 @@ In order to understand how to work with Web Bluetooth, you first must know about
 * [Data Buffer Concepts in JavaScript](https://data-flair.training/blogs/javascript-dataview/): TypedArray, ArrayBuffer, DataView, etc.
 
 Here are some additional helpful resources about web-bluetooth specifically:
-<ul>
-  <li>Web Bluetooth Examples: https://googlechrome.github.io/samples/web-bluetooth/index.html</li>
-  <li>Talk about web Bluetooth: https://www.youtube.com/watch?v=XDc5HUVMI5U</li>
-</ul>
+* Web Bluetooth Examples: https://googlechrome.github.io/samples/web-bluetooth/index.html</li>
+* Talk about web Bluetooth: https://www.youtube.com/watch?v=XDc5HUVMI5U</li>

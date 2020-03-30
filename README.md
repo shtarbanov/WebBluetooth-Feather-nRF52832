@@ -15,7 +15,7 @@ In order to understand how to work with Web Bluetooth, you first must know about
   <li>Bluetooth Services and Characteristics</li>
   <li>Data Buffers in JavaScrip: TypeArray, ArrayBuffer, DataView, etc.</li>
 </ul>
-You can even [link to Google!](http://google.com)
+This is a [link](http://google.com).
 
 Here are some additional helpful resources about web-bluetooth specifically:
 <ul>

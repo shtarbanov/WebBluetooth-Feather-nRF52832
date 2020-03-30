@@ -13,7 +13,7 @@ In order to understand how to work with Web Bluetooth, you first must know about
 * Promises in JavaScript
 * Async / Await in JavaScript
 * Bluetooth Services and Characteristics
-* [Data Buffers in JavaScrip](https://data-flair.training/blogs/javascript-dataview/): TypeArray, ArrayBuffer, DataView, etc.
+* [Data Buffer Concepts in JavaScrip](https://data-flair.training/blogs/javascript-dataview/): TypedArray, ArrayBuffer, DataView, etc.
 
 Here are some additional helpful resources about web-bluetooth specifically:
 <ul>

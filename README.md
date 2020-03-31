@@ -23,5 +23,5 @@ You can start playing with the example web-apps in this repository by launching 
 1. [Advertising Info](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/AdvertisingInfo/WebApp)
 2. [LED Control](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control/WebApp%20(Async))
    <br>[LED Control (2 devices)](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control/WebApp%2C%20control%202%20devices)
-3. [Battery Level Notify]
+3. [Battery Level Notify](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/BatteryLevel%20(Notification)/WebApp)
 4. [Display of Power Level]

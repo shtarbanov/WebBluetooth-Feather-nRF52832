@@ -1,4 +1,4 @@
-/* 
+/*
   This example shows how to control the state of each of the two LEDs on the nrf52832 Feather
   board. The microcontorller has been set up so that is has one custom service with a single
   characteristic that holds a 2-byte value. The two bytes in the characteristic correspond to
@@ -6,6 +6,8 @@
     In this JavaScript code, we are connecting to the device and reading the current value of
   the characteristic. Then we are toggling one of the two bytes depending on which button the
   user presses on the screen, which in turn causes the corresponding LED to toggle as well. 
+
+  This example uses the Async / Await approach.
 */
 'use strict'
 
@@ -14,7 +16,7 @@ const ledCharacteristicUUID = '5b8c0ab6-a058-4684-b2b6-4a0a692e2d45';
 
 let bleDevice;
 let bleServer;
-let bleService;
+let ledService;
 let ledCharacteristic;
 let valueArray;
 let stateRed = true;
@@ -35,8 +37,8 @@ async function connect() {
           optionalServices: [serviceUUID]
         });
     bleServer = await bleDevice.gatt.connect();
-    bleService = await bleServer.getPrimaryService(serviceUUID);
-    ledCharacteristic = await bleService.getCharacteristic(ledCharacteristicUUID);
+    ledService = await bleServer.getPrimaryService(serviceUUID);
+    ledCharacteristic = await ledService.getCharacteristic(ledCharacteristicUUID);
     
     //##################
     //Now we want to read the current value of the characteristic and set our LEDstate
@@ -50,7 +52,7 @@ async function connect() {
     //We now convert the DataView to TypedArray so we can use array notation to access the data.
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView/buffer
     valueArray = new Uint8Array(valueDataView.buffer);
-    log("Connected! The value is: \nQ1=" + valueArray[1] + " Q0=" + valueArray[0]);
+    log("Connected using Async function!\n The value is: \nQ1=" + valueArray[1] + " Q0=" + valueArray[0]);
     stateBlue = valueArray[1];
     stateRed = valueArray[0];
   }

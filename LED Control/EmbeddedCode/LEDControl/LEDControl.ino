@@ -56,6 +56,7 @@ void setupServices(void) {
   ledCharacteristic.setProperties(CHR_PROPS_WRITE | CHR_PROPS_READ);
   ledCharacteristic.setWriteCallback(getCharacteristicValueAndSetLEDs);
   ledCharacteristic.setPermission(SECMODE_ENC_NO_MITM, SECMODE_ENC_NO_MITM);
+    //For the permission, the first parameter is the READ, second the WRITE permission  
   ledCharacteristic.setFixedLen(2);
   ledCharacteristic.begin();
 }

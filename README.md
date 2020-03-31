@@ -18,3 +18,9 @@ In order to understand how to work with Web Bluetooth, you first must know about
 Here are some additional helpful resources about web-bluetooth specifically:
 * Web Bluetooth Examples: https://googlechrome.github.io/samples/web-bluetooth/index.html</li>
 * Talk about web Bluetooth: https://www.youtube.com/watch?v=XDc5HUVMI5U</li>
+
+You can start playing with the example web-apps in this repository by launching them directly from here.
+1. [LED Control](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control%20via%20WebBLE/WebApp%20(Async))
+2. [LED Control (2 devices)](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control%20via%20WebBLE/WebApp%2C%20control%202%20devices)
+3. [Display of Battery Level]
+4. [Display of Power Level]

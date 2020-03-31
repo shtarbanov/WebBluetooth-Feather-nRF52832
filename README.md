@@ -21,7 +21,7 @@ Here are some additional helpful resources about web-bluetooth specifically:
 
 You can start playing with the example web-apps in this repository by launching them directly from here.
 1. [Advertising Info]
-2. [LED Control](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control%20via%20WebBLE/WebApp%20(Async))
-   <br>[LED Control (2 devices)](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control%20via%20WebBLE/WebApp%2C%20control%202%20devices)
+2. [LED Control](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control/WebApp%20(Async))
+   <br>[LED Control (2 devices)](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control/WebApp%2C%20control%202%20devices)
 3. [Battery Level Notify]
 4. [Display of Power Level]

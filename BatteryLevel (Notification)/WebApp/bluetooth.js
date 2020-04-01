@@ -21,7 +21,8 @@ window.onload = function(){
 async function connect() {  
   try{
     bleDevice = await navigator.bluetooth.requestDevice({
-          filters: [{namePrefix: 'nrf52'}]
+          filters: [{namePrefix: 'nrf52'}],
+          optionalServices: ['battery_service']
     });
     bleServer = await bleDevice.gatt.connect();
     batteryService = await bleServer.getPrimaryService('battery_service'); //uuid is 0x180F

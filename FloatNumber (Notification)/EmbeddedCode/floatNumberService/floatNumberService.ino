@@ -12,10 +12,10 @@ BLEService floatNumberService;
 BLECharacteristic floatNumberCharacteristic;
 
 void setupServicesAndCharacteristics(){
-  floatNumberService = BLEService(0xAE6F); //c9006fae-ac09-4ec1-b338-2c3fb18c7724
+  floatNumberService = BLEService(0xAE6F);
   floatNumberService.begin();
 
-  floatNumberCharacteristic = BLECharacteristic(0x2947); //29475c3a-533e-4150-9436-2a55be1ec986
+  floatNumberCharacteristic = BLECharacteristic(0x2947);
   floatNumberCharacteristic.setProperties(CHR_PROPS_READ | CHR_PROPS_NOTIFY); 
   floatNumberCharacteristic.setFixedLen(4);
   floatNumberCharacteristic.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);

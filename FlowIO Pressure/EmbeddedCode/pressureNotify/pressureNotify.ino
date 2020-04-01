@@ -9,34 +9,36 @@
  *be made by writing a '1' in the request characteristic. The peripheral device will then 
  *send take a new reading, send the value as a notification, and write 0 to the request characteristic.
  */
+ 
 #include <bluefruit.h>
+#include <FlowIO.h>
 
+FlowIO flowio;
 int lastTime = millis();
 
-//All included services are in: C:\Users\Ali\AppData\Local\Arduino15\packages\adafruit\hardware\nrf52\0.14.0\libraries\Bluefruit52Lib\src\services
-BLEService randomGeneratorService;
-BLECharacteristic floatNumberCharacteristic;
-BLECharacteristic requestNewNumberCharacteristic;
+BLEService pressureService;
+BLECharacteristic pressureValueCharacteristic;
+BLECharacteristic pressureRequestCharacteristic;
 
 void setupServicesAndCharacteristics(){
-  randomGeneratorService = BLEService(0xAE6F); 
-  randomGeneratorService.begin();
+  pressureService = BLEService(0xAE6F); 
+  pressureService.begin();
 
-  floatNumberCharacteristic = BLECharacteristic(0x2947); 
-  floatNumberCharacteristic.setProperties(CHR_PROPS_READ | CHR_PROPS_NOTIFY); 
-  floatNumberCharacteristic.setFixedLen(4);
-  floatNumberCharacteristic.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
-  floatNumberCharacteristic.begin();
+  pressureValueCharacteristic = BLECharacteristic(0x2947); 
+  pressureValueCharacteristic.setProperties(CHR_PROPS_READ | CHR_PROPS_NOTIFY); 
+  pressureValueCharacteristic.setFixedLen(4);
+  pressureValueCharacteristic.setPermission(SECMODE_OPEN, SECMODE_NO_ACCESS);
+  pressureValueCharacteristic.begin();
 
-  requestNewNumberCharacteristic = BLECharacteristic(0x2948);
-  requestNewNumberCharacteristic.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE); 
-  requestNewNumberCharacteristic.setFixedLen(1);
-  requestNewNumberCharacteristic.setPermission(SECMODE_ENC_NO_MITM, SECMODE_ENC_NO_MITM);
-  requestNewNumberCharacteristic.setWriteCallback(onWrite);
-  requestNewNumberCharacteristic.begin();
+  pressureRequestCharacteristic = BLECharacteristic(0x2948);
+  pressureRequestCharacteristic.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE); 
+  pressureRequestCharacteristic.setFixedLen(1);
+  pressureRequestCharacteristic.setPermission(SECMODE_ENC_NO_MITM, SECMODE_ENC_NO_MITM);
+  pressureRequestCharacteristic.setWriteCallback(onWrite);
+  pressureRequestCharacteristic.begin();
 }
 
-//this is how re retrieve the value written.
+//this is how we are retrieve the value written.
 void onWrite(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len){
   Serial.println("Invoked");
   if(len==1){
@@ -44,15 +46,15 @@ void onWrite(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t 
     Serial.println(data[0],HEX);
     if(data[0] == 0x01){
       Serial.println("Data is a 0x01");
-      newRandomNumberNotification();
-      requestNewNumberCharacteristic.write8(0); //This line is not even necessary, because onWrite is executed regardless of the initial value.
+      notifyNewPressure();
+      pressureRequestCharacteristic.write8(0); //This line is not even necessary, because onWrite is executed regardless of the initial value.
     }
   }
 }
 
-void newRandomNumberNotification(){
-  float num = random(100,999) + random(0,99)/100.0f;
-  floatNumberCharacteristic.notify(&num,sizeof(num));
+void notifyNewPressure(){
+  float num = flowio.getPressure(PSI);
+  pressureValueCharacteristic.notify(&num,sizeof(num));
 }
 
 void startAdv(void){
@@ -62,7 +64,7 @@ void startAdv(void){
   //It is vital that we ADVERTISE the services on the device, if someone is searching
   //for that device based on the services it supports. If not advertised, there is no
   //way for a central to know what services are supported before connecting.
-  Bluefruit.Advertising.addService(randomGeneratorService);   // Include battService uuid  
+  Bluefruit.Advertising.addService(pressureService);   // Include battService uuid  
   Bluefruit.Advertising.restartOnDisconnect(true); //Restart advertising on disconnect.
   Bluefruit.Advertising.setInterval(32, 244);    // in unit of 0.625 ms
   Bluefruit.Advertising.setFastTimeout(30);      // number of seconds in fast mode
@@ -70,7 +72,12 @@ void startAdv(void){
 }
 
 void setup(){ 
+  //FlowIO must be initilized BEFORE the bluetooth.
+  flowio = FlowIO(GENERAL);
+  if(flowio.activateSensor()==false) flowio.redLED(HIGH);  //TODO: Have the value true/false be returned in a callback function.
+
   Serial.begin(9600);
+  //Bluetooth must be initilized AFTER FlowIO.
   Bluefruit.autoConnLed(true);   // Setup the BLE LED to be enabled on CONNECT
   //All config***() function must be called before begin()
   Bluefruit.configPrphBandwidth(BANDWIDTH_MAX); // Config the peripheral connection with maximum bandwidth 
@@ -84,13 +91,13 @@ void setup(){
 
 void loop(){ 
   if(millis() - lastTime > 5000){ //we wiil check the battery only once per 5 seconds. This reduces power consumption greatly.
-    newRandomNumberNotification();
-    lastTime = millis();
+    notifyNewPressure();
+    lastTime=millis();
   } 
   waitForEvent();  // Request CPU to enter low-power mode until an event/interrupt occurs
 }
 
 void connect_callback(uint16_t conn_handle){ // callback invoked when central connects
-  newRandomNumberNotification();
-  requestNewNumberCharacteristic.write8(0);
+  notifyNewPressure();
+  pressureRequestCharacteristic.write8(0);
 }

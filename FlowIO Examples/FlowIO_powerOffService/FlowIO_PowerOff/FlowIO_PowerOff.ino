@@ -28,9 +28,13 @@ void setup() {
 void startAdvertising(void) {
   Bluefruit.Advertising.addFlags(BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE);
   Bluefruit.Advertising.addTxPower();
-  Bluefruit.Advertising.addService(powerOffService);
   Bluefruit.ScanResponse.addName();
   Bluefruit.Advertising.restartOnDisconnect(true);
+  Bluefruit.Advertising.addService(powerOffService); //advertise service uuic
+
+  Bluefruit.Advertising.setInterval(32, 244); // in unit of 0.625 ms
+  Bluefruit.Advertising.setFastTimeout(30);   // number of seconds in fast mode
+  
   Bluefruit.Advertising.start(0);
 }
 

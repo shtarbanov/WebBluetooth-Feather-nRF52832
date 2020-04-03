@@ -83,6 +83,10 @@ void loop(){
 void startAdv(void){
   Bluefruit.Advertising.addFlags(BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE);   // Advertising packet
   Bluefruit.Advertising.addTxPower();
+    //It is vital that we ADVERTISE the services on the device, if someone is searching
+  //for that device based on the services it supports. If not advertised, there is no
+  //way for a central to know what services are supported before connecting.
+  Bluefruit.Advertising.addService(batteryService);   // Include battService uuid  
   Bluefruit.ScanResponse.addName();   // Secondary Scan Response packet (optional)
   Bluefruit.Advertising.restartOnDisconnect(true); //Restart advertising on disconnect.
   Bluefruit.Advertising.setInterval(32, 244);    // in unit of 0.625 ms

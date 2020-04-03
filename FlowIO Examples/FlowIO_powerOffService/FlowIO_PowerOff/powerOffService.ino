@@ -1,17 +1,5 @@
 //NOTE: Remember that you MUST execute 'resetOffTimer()' inside each event loop that you consider as non-idle event.
 
-//TODO: Make up another UUID set for all of FlowIO
-
-#define powerServiceUUIDString "ffff1010-0000-1111-9999-0000000001aa"
-#define chrPowerOffNowUUIDString "ffff1010-0000-1111-9999-c100000001aa"
-#define chrPowerOffWhenInactiveForUUIDString "ffff1010-0000-1111-9999-c200000001aa"
-#define chrPowerOffRemainingTimeUUIDString "ffff1010-0000-1111-9999-c300000001aa"
-
-uint8_t powerServiceUUID[16];
-uint8_t chrPowerOffNowUUID[16];
-uint8_t chrPowerOffWhenInactiveForUUID[16];
-uint8_t chrPowerOffRemainingTimeUUID[16];
-
 uint8_t inactiveTimeLimit[] = {5}; //minutes of inactivity until power off;
 int offTimerStart = millis();
 bool remaining1minute=false;
@@ -20,6 +8,16 @@ bool remaining3minute=false;
 uint8_t remainingTimeUint;
 
 void createPowerOffService(void) {
+  #define powerServiceUUIDString "ffff1010-0000-1111-9999-0000000001aa"
+  #define chrPowerOffNowUUIDString "ffff1010-0000-1111-9999-c100000001aa"
+  #define chrPowerOffWhenInactiveForUUIDString "ffff1010-0000-1111-9999-c200000001aa"
+  #define chrPowerOffRemainingTimeUUIDString "ffff1010-0000-1111-9999-c300000001aa"
+
+  uint8_t powerServiceUUID[16];
+  uint8_t chrPowerOffNowUUID[16];
+  uint8_t chrPowerOffWhenInactiveForUUID[16];
+  uint8_t chrPowerOffRemainingTimeUUID[16];
+  
   // Convert String UUID to raw UUID bytes
   uuidStringToByteArray(powerServiceUUIDString, powerServiceUUID);
   uuidStringToByteArray(chrPowerOffNowUUIDString, chrPowerOffNowUUID);

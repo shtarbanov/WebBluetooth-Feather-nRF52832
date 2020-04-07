@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <title>nRF Control</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="bluetooth.js"></script>
+    <script src="toBinaryString.js"></script>
+  </head>
+  <body>
+    <div align="center">
+      <div style="width:600px">
+        <h1>FlowIO Control</h1>
+        <hr>
+        <button id="connect" type="button" class="btn btn-primary">CONNECT</button>
+        <button id="disconnect" type="button" class="btn btn-primary">DISCONNECT</button>
+        <hr>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="port1" value="1">
+            <label class="form-check-label" for="inlineCheckbox1">1</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="port2" value="2">
+            <label class="form-check-label" for="inlineCheckbox2">2</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="port3" value="3">
+            <label class="form-check-label" for="inlineCheckbox2">3</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="port4" value="4">
+            <label class="form-check-label" for="inlineCheckbox2">4</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="port5" value="5">
+            <label class="form-check-label" for="inlineCheckbox2">5</label>
+          </div>
+        <hr> 
+        <button id="inflate" type="button" class="btn btn-primary">Inflate</button>
+        <button id="vacuum" type="button" class="btn btn-primary">Vacuum</button>
+        <button id="release" type="button" class="btn btn-primary">Release</button>
+        <hr>
+        <button id="stopAll" type="button" class="btn btn-primary">Stop All Actions</button>
+        <button id="stop" type="button" class="btn btn-primary">Stop Action</button>
+        <hr>
+          <table class="table">
+            <thead>
+              <tr align="center">
+                <th scope="col">Pump2</th>
+                <th scope="col">Outlet</th>
+                <th scope="col">Ports</th>
+                <th scope="col">Inlet</th>
+                <th scope="col">Pump1</th>
+                <th scope="col">RED</th>
+                <th scope="col">BLUE</th>
+                <th scope="col">Sensor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr align="center" style="font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;">
+                <td id="pump2">x</td>
+                <td id="outlet">x</td>
+                <td id="ports">xxxxx</td>
+                <td id="inlet">x</td>
+                <td id="pump1">x</td>
+                <td id="ledr">x</td>
+                <td id="ledb">x</td>
+                <td id="sensor">x</td>
+              </tr>              
+            </tbody>
+          </table>               
+        <hr>
+        <button id="read" type="button" class="btn btn-primary">Read Hardware State</button>
+        <pre id="log"></pre>
+      </div>
+    </div>
+  </body>
+</html>

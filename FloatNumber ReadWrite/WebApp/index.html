@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>R/W Float</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="bluetooth.js"></script>
+  </head>
+  <body>
+    <div align="center">
+      <div style="width:300px; align:center">
+        <h1>R/W Float</h1>
+        <hr>
+        <button id="connect" type="button" class="btn btn-default">CONNECT</button>
+        <button id="disconnect" type="button" class="btn btn-default">DISCONNECT</button>
+        <hr>
+        <input id="slider" type="range" min="1" max="10" value="3" step="0.01">
+        <p>Value: <span id="value"></span></p>
+        <br>
+        <button id="set" type="button" class="btn btn-default">setFloat</button>
+        <button id="get" type="button" class="btn btn-default">getFloat</button>
+        <hr>
+        <pre id="log"></pre>
+      </div>
+    </div>
+  </body>
+</html>

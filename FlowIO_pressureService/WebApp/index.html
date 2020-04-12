@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Get Pressure</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="bluetooth.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  </head>
+  <body>
+    <div align="center">
+      <div style="width:300px">
+        <h1>Get Pressure</h1>
+        <hr>
+        <hr>
+        <button id="connect" type="button" class="btn btn-default">CONNECT</button>
+        <button id="disconnect" type="button" class="btn btn-default">DISCONNECT</button>
+        <hr>
+        <button id="read" type="button" class="btn btn-default">Read Value</button>
+        <button id="generate" type="button" class="btn btn-default">Request New</button>
+        <hr>
+        
+            <input type="text" id="label" readonly style="border:0;">
+            <br>
+            <br>  
+            <div style="width:200px;" id="slider-range"></div>     
+        <br>
+        <button id="setminmax" type="button" class="btn btn-default">setMinMax</button>
+        <br><br>
+        <button id="getmin" type="button" class="btn btn-default">getMin</button>
+        <button id="getmax" type="button" class="btn btn-default">getMax</button>
+        <hr>
+        <hr>
+        <pre id="log"></pre>
+      </div>
+    </div>
+  </body>
+</html>

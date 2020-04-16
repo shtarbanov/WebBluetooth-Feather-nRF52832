@@ -14,7 +14,7 @@ The current configuration can also be read from the characteristic.
 FlowIO flowio;
 
 BLEService configService;
-BLECharacteristic chrPneumaticConfig;
+BLECharacteristic chrConfig;
 
 void setup() {
   flowio = FlowIO(GENERAL);
@@ -49,7 +49,7 @@ void loop() {
 }
 
 void connect_callback(uint16_t conn_handle){
-  chrPneumaticConfig.notify8(flowio.getConfig());
+  chrConfig.notify8(flowio.getConfig());
 }
 void disconnect_callback(uint16_t conn_handle, uint8_t reason){
   flowio.stopAction(0x00011111);

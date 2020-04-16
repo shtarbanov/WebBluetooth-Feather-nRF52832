@@ -15,8 +15,8 @@ BLECharacteristic chrPressureValue;
 BLECharacteristic chrPressureRequest;
 BLECharacteristic chrMaxPressureLimits;
 BLECharacteristic chrMinPressureLimits;
-
 uint8_t cmd[2];
+
 void setup() {
   Serial.begin(9600);
   flowio = FlowIO(GENERAL);

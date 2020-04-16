@@ -5,8 +5,9 @@
 
 FlowIO flowio;
 
-BLEService ledService;
+BLEService indicatorService;
 BLECharacteristic chrLedStates;
+BLECharacteristic chrError;
 uint8_t ledStates[2];
 
 void setup() {
@@ -17,7 +18,7 @@ void setup() {
   Bluefruit.Periph.setConnectCallback(connect_callback);
   Bluefruit.Periph.setDisconnectCallback(disconnect_callback);
 
-  createLedService(); //This is defined in the file "powerService.ino"
+  createIndicatorService();
   startAdvertising();
 }
 
@@ -26,7 +27,7 @@ void startAdvertising(void) {
   Bluefruit.Advertising.addTxPower();
   Bluefruit.ScanResponse.addName();
   Bluefruit.Advertising.restartOnDisconnect(true);
-  Bluefruit.Advertising.addService(ledService); //advertise service uuic
+  Bluefruit.Advertising.addService(indicatorService); //advertise service uuic
 
   Bluefruit.Advertising.setInterval(32, 244); // in unit of 0.625 ms
   Bluefruit.Advertising.setFastTimeout(30);   // number of seconds in fast mode

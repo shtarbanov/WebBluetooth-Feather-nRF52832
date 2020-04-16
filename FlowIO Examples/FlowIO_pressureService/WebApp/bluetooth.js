@@ -7,6 +7,12 @@ not true, thus we are trunkating the value to just 5 digits.
 */
 'use strict'
 
+const pressureServiceUUIDString      = '0b0b0b0b-0b0b-0b0b-0b0b-00000000aa05';
+const chrPressureValueUUID           = 0X2A6D;
+const chrPressureRequestUUIDString   = '0b0b0b0b-0b0b-0b0b-0b0b-c2000000aa05';
+const chrMaxPressureLimitsUUIDString = '0b0b0b0b-0b0b-0b0b-0b0b-c3000000aa05';
+const chrMinPressureLimitsUUIDString = '0b0b0b0b-0b0b-0b0b-0b0b-c4000000aa05';
+
 let bleDevice;
 let bleServer;
 let pressureService;
@@ -44,14 +50,14 @@ async function connect() {
   try{
     bleDevice = await navigator.bluetooth.requestDevice({
           filters: [{namePrefix: 'nrf52'}],
-          optionalServices: ['ffff1010-0000-1111-9999-0000000005aa']
+          optionalServices: [pressureServiceUUIDString]
     });
     bleServer = await bleDevice.gatt.connect();
-    pressureService = await bleServer.getPrimaryService('ffff1010-0000-1111-9999-0000000005aa');
-    chrPressureValue = await pressureService.getCharacteristic('ffff1010-0000-1111-9999-c100000005aa');
-    chrPressureRequest = await pressureService.getCharacteristic('ffff1010-0000-1111-9999-c200000005aa');
-    chrMaxPressureLimits = await pressureService.getCharacteristic('ffff1010-0000-1111-9999-c300000005aa');
-    chrMinPressureLimits = await pressureService.getCharacteristic('ffff1010-0000-1111-9999-c400000005aa');
+    pressureService = await bleServer.getPrimaryService(pressureServiceUUIDString);
+    chrPressureValue = await pressureService.getCharacteristic(chrPressureValueUUID);
+    chrPressureRequest = await pressureService.getCharacteristic(chrPressureRequestUUIDString);
+    chrMaxPressureLimits = await pressureService.getCharacteristic(chrMaxPressureLimitsUUIDString);
+    chrMinPressureLimits = await pressureService.getCharacteristic(chrMinPressureLimitsUUIDString);
 
     //This is reading the value of the characteristic and displaying it
     let valueDataView = await chrPressureValue.readValue(); //returns a DataView.

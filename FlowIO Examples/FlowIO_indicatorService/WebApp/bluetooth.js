@@ -11,12 +11,12 @@
 */
 'use strict'
 
-const ledServiceUUID = 'ffff1010-0000-1111-9999-0000000002aa';
-const chrLedStatesUUID = 'ffff1010-0000-1111-9999-c100000002aa';
+const indicatorServiceUUID = '0b0b0b0b-0b0b-0b0b-0b0b-00000000aa02';
+const chrLedStatesUUID     = '0b0b0b0b-0b0b-0b0b-0b0b-c1000000aa02';
 
 let bleDevice;
 let bleServer;
-let ledService;
+let indicatorService;
 let chrLedStates;
 let valueArray;
 let stateRed = true;
@@ -34,11 +34,11 @@ async function connect() {
   try{
     bleDevice = await navigator.bluetooth.requestDevice({
           filters: [{namePrefix: 'nrf52'}],
-          optionalServices: [ledServiceUUID]
+          optionalServices: [indicatorServiceUUID]
         });
     bleServer = await bleDevice.gatt.connect();
-    ledService = await bleServer.getPrimaryService(ledServiceUUID);
-    chrLedStates = await ledService.getCharacteristic(chrLedStatesUUID);
+    indicatorService = await bleServer.getPrimaryService(indicatorServiceUUID);
+    chrLedStates = await indicatorService.getCharacteristic(chrLedStatesUUID);
     
     log("Connected");
 

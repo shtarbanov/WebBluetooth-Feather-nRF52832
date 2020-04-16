@@ -11,8 +11,8 @@
 */
 'use strict'
 
-const configServiceUUID = 'ffff1010-0000-1111-9999-0000000003aa';
-const chrConfigUUID = 'ffff1010-0000-1111-9999-c100000003aa';
+const configServiceUUID = '0b0b0b0b-0b0b-0b0b-0b0b-00000000aa03';
+const chrConfigUUID     = '0b0b0b0b-0b0b-0b0b-0b0b-c1000000aa03';
 
 let bleDevice;
 let bleServer;

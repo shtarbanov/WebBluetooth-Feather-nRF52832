@@ -3,25 +3,12 @@ float maxPressureLimits[5] = {0,0,0,0,0};
 float minPressureLimits[5] = {0,0,0,0,0};
 
 void createPressureService(void) {
-  #define pressureServiceUUIDString "ffff1010-0000-1111-9999-0000000005aa"
-  #define chrPressureValueUUIDString "ffff1010-0000-1111-9999-c100000005aa"
-  #define chrPressureRequestUUIDString "ffff1010-0000-1111-9999-c200000005aa"
-  #define chrMaxPressureLimitsUUIDString "ffff1010-0000-1111-9999-c300000005aa"
-  #define chrMinPressureLimitsUUIDString "ffff1010-0000-1111-9999-c400000005aa"
-
-  uint8_t pressureServiceUUID[16];
-  uint8_t chrPressureValueUUID[16];
-  uint8_t chrPressureRequestUUID[16];
-  uint8_t chrMaxPressureLimitsUUID[16];
-  uint8_t chrMinPressureLimitsUUID[16];
+  uint8_t pressureServiceUUID[16]     = {0x05,0xaa,0x00,0x00,0x00,0x00,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-00000000aa05"
+  uint16_t chrPressureValueUUID = 0X2A6D; //"0X2A6D"
+  uint8_t chrPressureRequestUUID[16]  = {0x05,0xaa,0x00,0x00,0x00,0xc2,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c2000000aa05"
+  uint8_t chrMaxPressureLimitsUUID[16]= {0x05,0xaa,0x00,0x00,0x00,0xc3,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c3000000aa05"
+  uint8_t chrMinPressureLimitsUUID[16]= {0x05,0xaa,0x00,0x00,0x00,0xc4,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c4000000aa05"
   
-  // Convert String UUID to raw UUID bytes
-  uuidStringToByteArray(pressureServiceUUIDString, pressureServiceUUID);
-  uuidStringToByteArray(chrPressureValueUUIDString, chrPressureValueUUID);
-  uuidStringToByteArray(chrPressureRequestUUIDString, chrPressureRequestUUID);
-  uuidStringToByteArray(chrMaxPressureLimitsUUIDString, chrMaxPressureLimitsUUID);
-  uuidStringToByteArray(chrMinPressureLimitsUUIDString, chrMinPressureLimitsUUID);
-
   pressureService = BLEService(pressureServiceUUID);
   pressureService.begin();
 

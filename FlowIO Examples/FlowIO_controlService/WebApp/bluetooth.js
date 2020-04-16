@@ -9,9 +9,9 @@
 */
 'use strict'
 
-const controlServiceUUID = 'ffff1010-0000-1111-9999-0000000004aa';
-const chrCommandUUID = 'ffff1010-0000-1111-9999-c100000004aa';
-const chrHardwareStatusUUID = 'ffff1010-0000-1111-9999-c200000004aa';
+const controlServiceUUID    = '0b0b0b0b-0b0b-0b0b-0b0b-00000000aa04';
+const chrCommandUUID        = '0b0b0b0b-0b0b-0b0b-0b0b-c1000000aa04';
+const chrHardwareStatusUUID = '0b0b0b0b-0b0b-0b0b-0b0b-c2000000aa04';
 
 let bleDevice;
 let bleServer;

@@ -2,10 +2,10 @@
 */
 'use strict'
 
-const powerOffServiceUUIDString           = 'ffff1010-0000-1111-9999-0000000001aa';
-const chrPowerOffNowUUIDString            = 'ffff1010-0000-1111-9999-c100000001aa';
-const chrPowerOffWhenInactiveForUUIDString= 'ffff1010-0000-1111-9999-c200000001aa';
-const chrPowerOffRemainingTimeUUIDString  = 'ffff1010-0000-1111-9999-c300000001aa';
+const powerOffServiceUUIDString           = '0b0b0b0b-0b0b-0b0b-0b0b-00000000aa01';
+const chrPowerOffNowUUIDString            = '0b0b0b0b-0b0b-0b0b-0b0b-c1000000aa01';
+const chrPowerOffWhenInactiveForUUIDString= '0b0b0b0b-0b0b-0b0b-0b0b-c2000000aa01';
+const chrPowerOffRemainingTimeUUIDString  = '0b0b0b0b-0b0b-0b0b-0b0b-c3000000aa01';
 
 let bleDevice;
 let bleServer;

@@ -8,21 +8,10 @@ bool remaining3minute=false;
 uint8_t remainingTimeUint;
 
 void createPowerOffService(void) {
-  #define powerServiceUUIDString "ffff1010-0000-1111-9999-0000000001aa"
-  #define chrPowerOffNowUUIDString "ffff1010-0000-1111-9999-c100000001aa"
-  #define chrPowerOffWhenInactiveForUUIDString "ffff1010-0000-1111-9999-c200000001aa"
-  #define chrPowerOffRemainingTimeUUIDString "ffff1010-0000-1111-9999-c300000001aa"
-
-  uint8_t powerServiceUUID[16];
-  uint8_t chrPowerOffNowUUID[16];
-  uint8_t chrPowerOffWhenInactiveForUUID[16];
-  uint8_t chrPowerOffRemainingTimeUUID[16];
-  
-  // Convert String UUID to raw UUID bytes
-  uuidStringToByteArray(powerServiceUUIDString, powerServiceUUID);
-  uuidStringToByteArray(chrPowerOffNowUUIDString, chrPowerOffNowUUID);
-  uuidStringToByteArray(chrPowerOffWhenInactiveForUUIDString, chrPowerOffWhenInactiveForUUID);
-  uuidStringToByteArray(chrPowerOffRemainingTimeUUIDString, chrPowerOffRemainingTimeUUID);
+  const uint8_t powerServiceUUID[16]              = {0x01,0xaa,0x00,0x00,0x00,0x00,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-00000000aa01"
+  const uint8_t chrPowerOffNowUUID[16]            = {0x01,0xaa,0x00,0x00,0x00,0xc1,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c1000000aa01"
+  const uint8_t chrPowerOffWhenInactiveForUUID[16]= {0x01,0xaa,0x00,0x00,0x00,0xc2,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c2000000aa01"
+  const uint8_t chrPowerOffRemainingTimeUUID[16]  = {0x01,0xaa,0x00,0x00,0x00,0xc3,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c3000000aa01"
 
   powerOffService = BLEService(powerServiceUUID);
   powerOffService.begin();

@@ -1,29 +1,22 @@
 
 void createConfigService(void) {
-  #define configServiceUUIDString "ffff1010-0000-1111-9999-0000000003aa"
-  #define chrPneumaticConfigUUIDString "ffff1010-0000-1111-9999-c100000003aa"
-
-  uint8_t configServiceUUID[16];
-  uint8_t chrPneumaticConfigUUID[16];
+  uint8_t configServiceUUID[16] = {0x03,0xaa,0x00,0x00,0x00,0x00,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-00000000aa03"
+  uint8_t chrConfigUUID[16]     = {0x03,0xaa,0x00,0x00,0x00,0xc1,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c1000000aa03"
   
-  // Convert String UUID to raw UUID bytes
-  uuidStringToByteArray(configServiceUUIDString, configServiceUUID);
-  uuidStringToByteArray(chrPneumaticConfigUUIDString, chrPneumaticConfigUUID);
-
   configService = BLEService(configServiceUUID);
   configService.begin();
 
-  chrPneumaticConfig = BLECharacteristic(chrPneumaticConfigUUID);
-  chrPneumaticConfig.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
-  chrPneumaticConfig.setWriteCallback(onWrite_chrPneumaticConfig);
-  chrPneumaticConfig.setPermission(SECMODE_ENC_NO_MITM, SECMODE_ENC_NO_MITM);
-  chrPneumaticConfig.setFixedLen(1);
-  chrPneumaticConfig.begin();
-  chrPneumaticConfig.write8(flowio.getConfig());
+  chrConfig = BLECharacteristic(chrConfigUUID);
+  chrConfig.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
+  chrConfig.setWriteCallback(onWrite_chrConfig);
+  chrConfig.setPermission(SECMODE_ENC_NO_MITM, SECMODE_ENC_NO_MITM);
+  chrConfig.setFixedLen(1);
+  chrConfig.begin();
+  chrConfig.write8(flowio.getConfig());
 }
 
 //This is executed when a central device writes to the characteristic.
-void onWrite_chrPneumaticConfig(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
+void onWrite_chrConfig(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
   if(len==1){
     Configuration cfg; 
     if(data[0] == 0x00) cfg = GENERAL;
@@ -33,7 +26,7 @@ void onWrite_chrPneumaticConfig(uint16_t conn_hdl, BLECharacteristic* chr, uint8
     else if(data[0] == 0x04) cfg = VACUUM_PARALLEL;
     else{
       cfg = flowio.getConfig();
-      chrPneumaticConfig.write8(cfg);
+      chrConfig.write8(cfg);
     }
     flowio.stopAction(0x00011111); //stop esverything before changing the configuration.
     flowio.setConfig(cfg);

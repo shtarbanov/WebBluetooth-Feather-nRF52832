@@ -1,17 +1,8 @@
 
 void createControlService(void) {
-  #define controlServiceUUIDString "ffff1010-0000-1111-9999-0000000004aa"
-  #define chrCommandUUIDString "ffff1010-0000-1111-9999-c100000004aa"
-  #define chrHardwareStatusUUIDString "ffff1010-0000-1111-9999-c200000004aa"
-
-  uint8_t controlServiceUUID[16];
-  uint8_t chrCommandUUID[16];
-  uint8_t chrHardwareStatusUUID[16];
-  
-  // Convert String UUID to raw UUID bytes
-  uuidStringToByteArray(controlServiceUUIDString, controlServiceUUID);
-  uuidStringToByteArray(chrCommandUUIDString, chrCommandUUID);
-  uuidStringToByteArray(chrHardwareStatusUUIDString, chrHardwareStatusUUID);
+  uint8_t controlServiceUUID[16]   = {0x04,0xaa,0x00,0x00,0x00,0x00,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-00000000aa04"
+  uint8_t chrCommandUUID[16]       = {0x04,0xaa,0x00,0x00,0x00,0xc1,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c1000000aa04"
+  uint8_t chrHardwareStatusUUID[16]= {0x04,0xaa,0x00,0x00,0x00,0xc2,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b,0x0b}; //"0b0b0b0b-0b0b-0b0b-0b0b-c2000000aa04"
 
   controlService = BLEService(controlServiceUUID);
   controlService.begin();

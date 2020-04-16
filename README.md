@@ -2,7 +2,7 @@
 Web Bluetooth examples with Adafruit Feather nRF52832
 
 This repository contains full examples to help you get started with Web Bluetooth. You will find both 
-the embedded code tor for setting up a basic bluetooth device and the JavaScript code for connecting to and controlling
+the embedded code for setting up a basic bluetooth device and the JavaScript code for connecting to and controlling
 that device from the web browser.
 
 In order to understand how to work with Web Bluetooth, you first must know about the following concepts, and in the order shown:
@@ -24,6 +24,6 @@ You can start playing with the example web-apps in this repository by launching 
 2. [LED Control](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control/WebApp%20(Async))
    <br>[LED Control (2 devices)](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/LED%20Control/WebApp%2C%20control%202%20devices)
 3. [Battery Level Notify](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/BatteryLevel%20(Notification)/WebApp)
-4. [Floating Point Number Read](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/FloatNumber%20(Notification)/WebApp/index.html)
-5. [Floating Point Number Read/Write]()
-6. [Random Number Generator]()
+4. [Floating Point Number Read](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/FloatNumber%20Read%20(Notification)/WebApp)
+5. [Floating Point Number Read/Write](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/FloatNumber%20ReadWrite/WebApp)
+6. [Random Number Generator](https://shtarbanov.github.io/WebBluetooth-Feather-nRF52832/Random%20Number%20Generator/WebApp)

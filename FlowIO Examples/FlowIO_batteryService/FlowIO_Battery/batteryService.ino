@@ -28,14 +28,18 @@ uint8_t getBatteryPercentage(){ //this computation is based on LiPo chemistry.
   return 10 + (mv * 0.15F );  // thats mv/6.66666666
 }
 
-void reportBatteryLevelIfTime(){
-  if(millis() - lastTime > 5000){ //we wiil check the battery only once per 5 seconds. This reduces power consumption greatly.
-    batteryPercentage = getBatteryPercentage();
-    lastTime = millis();
-    if(batteryPercentage < batteryPercentageOld-1 || batteryPercentage > batteryPercentageOld+1){
-      if(batteryPercentage < 10)  chrBattPercentage.notify8(batteryPercentage);
-      else                        chrBattPercentage.write8(batteryPercentage);
-      batteryPercentageOld = batteryPercentage;
+void updateBatteryLevelEvery(int interval){
+  if(Bluefruit.connected()){ //This is mandatory here becasue we cannot execute .notify8() unless connected.
+    if(millis() - lastTime > interval){ //we wiil check the battery only once per 5 seconds. This reduces power consumption greatly.
+      Serial.println("Read Battery Value");
+      batteryPercentage = getBatteryPercentage();
+      Serial.println(batteryPercentage);
+      lastTime = millis();
+      if(batteryPercentage < batteryPercentageOld-1 || batteryPercentage > batteryPercentageOld+1){
+        if(batteryPercentage < 10)  chrBattPercentage.notify8(batteryPercentage);
+        else                        chrBattPercentage.write8(batteryPercentage);
+        batteryPercentageOld = batteryPercentage;
+      }
     }
   }
 }

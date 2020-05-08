@@ -14,6 +14,7 @@ BLECharacteristic chrBattPercentage;
 
 
 void setup(){ 
+  Serial.begin(9600);
   analogReference(AR_INTERNAL_3_0);   // Set the analog reference to 3.0V (default = 3.6V) b/c battery voltage may drop to <3.6V and then default will become inaccurate.
   analogReadResolution(12);   // Set the resolution to 12-bit (0..4095). Can be 8, 10, 12 or 14
   Bluefruit.autoConnLed(true);   // Setup the BLE LED to be enabled on CONNECT
@@ -28,8 +29,8 @@ void setup(){
   startAdvertising();   // Set up and start advertising
 }
 
-void loop(){ 
-  reportBatteryLevelIfTime();
+void loop(){
+  updateBatteryLevelEvery(5000);
   waitForEvent();  // Request CPU to enter low-power mode until an event/interrupt occurs
 }
 

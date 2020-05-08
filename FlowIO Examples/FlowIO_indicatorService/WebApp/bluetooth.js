@@ -13,11 +13,13 @@
 
 const indicatorServiceUUID = '0b0b0b0b-0b0b-0b0b-0b0b-00000000aa02';
 const chrLedStatesUUID     = '0b0b0b0b-0b0b-0b0b-0b0b-c1000000aa02';
+const chrErrorUUID         = '0b0b0b0b-0b0b-0b0b-0b0b-c2000000aa02';
 
 let bleDevice;
 let bleServer;
 let indicatorService;
 let chrLedStates;
+let chrError;
 let valueArray;
 let stateRed = true;
 let stateBlue = true;
@@ -28,6 +30,8 @@ window.onload = function(){
   document.querySelector('#red').addEventListener('click', toggleRed);
   document.querySelector('#blue').addEventListener('click', toggleBlue);
   document.querySelector('#read').addEventListener('click', readCharacteristicValue);
+  document.querySelector('#readError').addEventListener('click', readError);
+  document.querySelector('#clearError').addEventListener('click', clearError);
 };
 
 async function connect() {  
@@ -39,13 +43,21 @@ async function connect() {
     bleServer = await bleDevice.gatt.connect();
     indicatorService = await bleServer.getPrimaryService(indicatorServiceUUID);
     chrLedStates = await indicatorService.getCharacteristic(chrLedStatesUUID);
+    chrError = await indicatorService.getCharacteristic(chrErrorUUID);
     
     log("Connected");
+
+    //Subscribe to receive notifications from the error characteristic
+    await chrError.startNotifications();
+    chrError.addEventListener('characteristicvaluechanged', event => {
+      log("Error Code: " + event.target.value.getUint8(0));
+    })
+    await chrError.readValue(); //This triggers a notification to be sent.
 
     //Subscribe to receive notifications from chrLedStates.
     await chrLedStates.startNotifications(); //This line causes red LED to turn off for some reason!?
     chrLedStates.addEventListener('characteristicvaluechanged', event => {
-      log("Notification: Q1=" + event.target.value.getUint8(1) + " Q2=" + event.target.value.getUint8(0));
+      log("Notification: B=" + event.target.value.getUint8(1) + " R=" + event.target.value.getUint8(0));
     })
 
     //##################
@@ -53,14 +65,13 @@ async function connect() {
     //variables in JavaScript to match those from the characteristic.
     //##################
 
-    let valueDataView = await chrLedStates.readValue(); //returns a DataView.
+    let valueDataView = await chrLedStates.readValue(); //returns a DataView. This triggers a notification.
     //If you didn't know that object is of type "DataView" you could just do
     //console.log(valueDataView) and then you will see all infor about this variable in the console.
 
     //We now convert the DataView to TypedArray so we can use array notation to access the data.
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView/buffer
     valueArray = new Uint8Array(valueDataView.buffer);
-    log("The value is: \nQ1=" + valueArray[1] + " Q0=" + valueArray[0]);
     stateBlue = valueArray[1];
     stateRed = valueArray[0];
 
@@ -102,6 +113,16 @@ async function toggleBlue(){
     stateBlue = !stateBlue;
     await chrLedStates.writeValue(valueArray);
 }
+
+async function readError(){
+  await chrError.readValue(); //thi will trigger our notification listener.
+}
+
+async function clearError(){
+  let zeroArray = new Uint8Array([0]);
+  await chrError.writeValue(zeroArray);
+}
+
 function log(text) {
     console.log(text);
     document.querySelector('#log').textContent += text + '\n';

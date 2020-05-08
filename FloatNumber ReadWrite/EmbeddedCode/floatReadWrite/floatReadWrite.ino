@@ -21,6 +21,7 @@ void setup() {
 
   createFloatService();
   startAdvertising(); 
+  Serial.println("DSD");
 }
 
 void startAdvertising(void) {

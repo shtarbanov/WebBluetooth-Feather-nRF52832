@@ -18,6 +18,7 @@ void createFloatService(void) {
   chrFloatValue.setProperties(CHR_PROPS_READ | CHR_PROPS_WRITE);
   chrFloatValue.setPermission(SECMODE_ENC_NO_MITM, SECMODE_ENC_NO_MITM);
   chrFloatValue.setFixedLen(4);
+  chrFloatValue.setWriteCallback(onWrite_chrFloatValue);
   chrFloatValue.begin();
 }
 
@@ -25,19 +26,8 @@ void createFloatService(void) {
 void onWrite_chrFloatValue(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
   Serial.println("Value: ");
   if(len==4){
-    uint32_t rawData;
-    rawData = data[0];
-    rawData << 8;
-    rawData = rawData | data[1];
-    rawData << 8;
-    rawData = rawData | data[2];
-    rawData << 8;
-    rawData = rawData | data[3];
-    Serial.println(rawData);
-    Serial.println((float) rawData);
+    byte byteArray[4] = {data[0],data[1],data[2],data[3]};
+    float x = *(float *)&byteArray;
+    Serial.println(x);
   }
-}
-
-void onWrite_chrMinPressureLimits(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
-
 }

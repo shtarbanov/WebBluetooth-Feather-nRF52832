@@ -24,9 +24,7 @@ void createControlService(void) {
 
 //This is executed when a central device writes to the characteristic.
 void onWrite_chrCommand(uint16_t conn_hdl, BLECharacteristic* chr, uint8_t* data, uint16_t len) {
-  Serial.println("Value Written");
-  //I don't know if the order of these is correct.
-  
+  Serial.println("Value Written");  
   if(len==2){
     Serial.print(data[0],BIN);
     Serial.println(data[1],BIN);

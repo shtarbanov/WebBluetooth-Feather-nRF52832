@@ -15,7 +15,7 @@ uint8_t cmd[2];
 
 void setup() {
   Serial.begin(9600);
-  flowio = FlowIO(GENERAL);
+  flowio = FlowIO(GENERAL); //This must be done BEFORE any Bluefruit commands!
   //flowio.activateSensor();
   Bluefruit.begin();
   Bluefruit.setName(DEVICE_NAME);

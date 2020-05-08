@@ -39,7 +39,6 @@ void startAdvertising(void) {
 }
 
 void loop() {
-  delay(1000);
   powerOffIfInactiveTimeLimitReached();
 }
 

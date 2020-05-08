@@ -62,7 +62,7 @@ void resetOffTimer(){   //You must run this function in each event that you cons
 }
 
 void powerOffIfInactiveTimeLimitReached(){
-  if(inactiveTimeLimit[0]==0) return;
+  if(inactiveTimeLimit[0]==0) return; //0 means that the feature is disabled.
   
   float remainingtime = inactiveTimeLimit[0] - (millis() - offTimerStart)/60000.0f;
   if(remainingtime <= 0){     //IF YOU GET THIS SIGN MIXED WITH >=, YOU WILL BRICK YOUR DEVICE!!!

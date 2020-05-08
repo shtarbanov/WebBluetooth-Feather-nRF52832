@@ -9,7 +9,7 @@ FlowIO flowio;
 
 BLEService controlService;
 BLECharacteristic chrCommand;
-BLECharacteristic chrHardwareStatus;
+BLECharacteristic chrHardwareState;
 
 uint8_t cmd[2];
 
@@ -51,7 +51,7 @@ void connect_callback(uint16_t conn_handle){
   cmd[1] = 0b00011111;
   flowio.command(cmd[0],cmd[1]);
   chrCommand.write(cmd,2);
-  chrHardwareStatus.notify16(flowio.getHardwareStatus());
+  chrHardwareState.notify16(flowio.getHardwareState());
 }
 void disconnect_callback(uint16_t conn_handle, uint8_t reason){
   //stop everything on disconnect

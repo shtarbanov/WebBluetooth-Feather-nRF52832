@@ -15,7 +15,7 @@ void createIndicatorService(void) {
   chrLedStates.begin();
 
   chrError = BLECharacteristic(chrErrorUUID);
-  chrError.setProperties(CHR_PROPS_READ | CHR_PROPS_NOTIFY);
+  chrError.setProperties(CHR_PROPS_READ | CHR_PROPS_NOTIFY | CHR_PROPS_WRITE); //The write is so that we can clear the error.
   chrError.setPermission(SECMODE_ENC_NO_MITM, SECMODE_ENC_NO_MITM);
   chrError.setFixedLen(1);
   chrError.begin();

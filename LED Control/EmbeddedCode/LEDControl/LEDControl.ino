@@ -11,8 +11,7 @@ have to worry about matching baud rates, we don't have to constantly be polling 
 saves energy, and we have full flexibility in what we want to do. This approach is way better than BLE UART.
 */
 
-/*  TODO: Is there a way to simplify how UUID is assigned?
- *  TODO: Look more indepth into the advertising settings, flags, permissions.
+/*  TODO: Look more indepth into the advertising settings, flags, permissions.
  *  TODO: How are my communication parameters, tx power, etc.
  *  TODO: Can you add encription?
  */
@@ -45,14 +44,10 @@ void loop() {
 }
 
 void setupServices(void) {
-  // Convert String UUID to raw UUID bytes
-  strUUID2Bytes(LED_SERVICE_UUID, ledServiceUUID);
-  strUUID2Bytes(LED_CHARACTERISTIC_UUID, ledCharacteristicUUID);
-
-  ledService = BLEService(ledServiceUUID);
+  ledService = BLEService(LED_SERVICE_UUID);
   ledService.begin();
 
-  ledCharacteristic = BLECharacteristic(ledCharacteristicUUID);
+  ledCharacteristic = BLECharacteristic(LED_CHARACTERISTIC_UUID);
   ledCharacteristic.setProperties(CHR_PROPS_WRITE | CHR_PROPS_READ);
   ledCharacteristic.setWriteCallback(getCharacteristicValueAndSetLEDs);
   ledCharacteristic.setPermission(SECMODE_ENC_NO_MITM, SECMODE_ENC_NO_MITM);
@@ -93,23 +88,3 @@ void disconnect_callback(uint16_t conn_handle, uint8_t reason){
   digitalWrite(blueLed,LOW);
 }
 
-//###########################---UUID Converter---#################################
-void strUUID2Bytes(String strUUID, uint8_t binUUID[]) {
-  String hexString = String(strUUID);
-  hexString.replace("-", "");
-
-  for (int i = 16; i != 0 ; i--) {
-    binUUID[i - 1] = hex2c(hexString[(16 - i) * 2], hexString[((16 - i) * 2) + 1]);
-  }
-}
-
-char hex2c(char c1, char c2) {
-  return (nibble2c(c1) << 4) + nibble2c(c2);
-}
-
-char nibble2c(char c) {
-  if ((c >= '0') && (c <= '9')) return c - '0';
-  if ((c >= 'A') && (c <= 'F')) return c + 10 - 'A';
-  if ((c >= 'a') && (c <= 'f')) return c + 10 - 'a';
-  return 0;
-}
